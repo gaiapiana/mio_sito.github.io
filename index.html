@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piana Gaia - Sito Personale</title>
+  <meta name="description" content="Sito personale di Piana Gaia" />
+  <style>
+    :root {
+      --bg: #eef3ec;
+      --bg-soft: #e2ebe0;
+      --text: #2e3d30;
+      --accent: #7a9b7e;
+      --accent-dark: #5a7d5e;
+      --accent-light: #d7e5d3;
+      --muted: #6d7f6f;
+      --card: #fafcf9;
+      --border: #cbd9c6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    img { max-width: 100%; height: auto; display: block; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at 10% 10%, #dde8d8 0 120px, transparent 121px),
+        radial-gradient(circle at 90% 20%, #dde8d8 0 100px, transparent 101px),
+        radial-gradient(circle at 15% 85%, #dbe7d6 0 140px, transparent 141px);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(250, 252, 249, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    nav strong { font-size: 1.2rem; letter-spacing: 0.5px; white-space: nowrap; }
+    .menu-toggle {
+      display: none;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text);
+      width: auto;
+    }
+    nav ul { list-style: none; display: flex; gap: 1.2rem; align-items: center; }
+    nav a { text-decoration: none; color: var(--text); font-weight: 500; }
+    nav a:hover { color: var(--accent-dark); }
+    main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; width: 100%; }
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      background: linear-gradient(180deg, var(--accent-light), transparent);
+      border-radius: 24px;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-plants {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+    }
+    .hero-plants svg { width: 72px; height: 72px; }
+    .leaf-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1rem auto 0;
+      color: var(--accent-dark);
+      opacity: 0.8;
+    }
+    .leaf-divider::before, .leaf-divider::after {
+      content: "";
+      height: 1px;
+      width: 90px;
+      background: var(--border);
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw + 1rem, 3rem); margin-bottom: 0.5rem; line-height: 1.15; }
+    .hero h1 span { color: var(--accent-dark); }
+    .hero p { color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.2rem); max-width: 600px; margin: 0 auto 1.5rem; }
+    .btn {
+      display: inline-block;
+      background: var(--accent-dark);
+      color: #f6faf5;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--accent-dark);
+    }
+    .btn:hover { background: #4a6b4e; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    section { margin-top: 3rem; }
+    section h2 { font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); display: inline-flex; align-items: center; gap: 0.5rem; padding-bottom: 0.25rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(90, 125, 94, 0.08);
+    }
+    .card h3 { display: flex; align-items: center; gap: 0.5rem; }
+    .card h3::before { content: ""; width: 22px; height: 22px; flex-shrink: 0;
+      background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237a9b7e'%3E%3Cpath d='M12 2C7 7 4 11 4 15a8 8 0 0 0 16 0c0-4-3-8-8-13zm0 18a5.5 5.5 0 0 1-5.5-5.5c0-.5.1-1 .2-1.5L12 18l5.3-5c.1.5.2 1 .2 1.5A5.5 5.5 0 0 1 12 20z'/%3E%3C/svg%3E");
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #e6eee3;
+    }
+    form { display: grid; gap: 1rem; max-width: 500px; margin-top: 1rem; }
+    input, textarea {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      width: 100%;
+      background: #fff;
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--accent-light); border-color: var(--accent); }
+    button {
+      background: var(--accent-dark);
+      color: #f6faf5;
+      border: 0;
+      padding: 0.75rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* --- Responsive --- */
+    section h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav { flex-wrap: wrap; }
+      nav ul {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 0.5rem;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { border-top: 1px solid #f3f4f6; }
+      nav ul a {
+        display: block;
+        padding: 0.9rem 0.25rem;
+      }
+      .hero { padding: 2.5rem 0.5rem 2rem; }
+      main { padding: 1.5rem 1rem 3rem; }
+      .grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.9rem 1rem; }
+      .btn, button { width: 100%; text-align: center; }
+      .card { padding: 1.1rem; }
+      section { margin-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <strong>Piana Gaia</strong>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#chi-sono">Chi sono</a></li>
+        <li><a href="#progetti">Progetti</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero" id="home">
+      <div class="hero-plants" aria-hidden="true">
+        <!-- piantina stilizzata 1: vaso -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 8C32 8 18 22 18 34a14 14 0 0 0 28 0C46 22 32 8 32 8Z" fill="#a8c3a0" stroke="#5a7d5e" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M32 18V44" stroke="#5a7d5e" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 52h16l-2 8H26l-2-8Z" fill="#d7e5d3" stroke="#5a7d5e" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <!-- piantina stilizzata 2: monstera semplificata -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="22" cy="26" rx="10" ry="14" fill="#b9d1b3" stroke="#5a7d5e" stroke-width="2.5"/>
+          <ellipse cx="42" cy="26" rx="10" ry="14" fill="#cfe0cc" stroke="#5a7d5e" stroke-width="2.5"/>
+          <path d="M32 12v36" stroke="#5a7d5e" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 50h20l-3 10H25l-3-10Z" fill="#eef4ec" stroke="#5a7d5e" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <!-- piantina stilizzata 3: rametto -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 8v44" stroke="#5a7d5e" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="22" cy="20" rx="8" ry="5" fill="#a8c3a0" stroke="#5a7d5e" stroke-width="2" transform="rotate(-25 22 20)"/>
+          <ellipse cx="42" cy="28" rx="8" ry="5" fill="#b9d1b3" stroke="#5a7d5e" stroke-width="2" transform="rotate(25 42 28)"/>
+          <ellipse cx="22" cy="36" rx="8" ry="5" fill="#cfe0cc" stroke="#5a7d5e" stroke-width="2" transform="rotate(-25 22 36)"/>
+          <path d="M24 52h16l-2 8H26l-2-8Z" fill="#d7e5d3" stroke="#5a7d5e" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1>Ciao, sono <span>Piana Gaia</span></h1>
+      <p>Benvenuto nel mio angolo verde. Qui racconto chi sono, cosa faccio e i miei progetti.</p>
+      <a class="btn" href="#contatti">Contattami</a>
+      <div class="leaf-divider" aria-hidden="true">❧</div>
+    </div>
+
+    <section id="chi-sono">
+      <h2>Chi sono</h2>
+      <div class="card">
+        <p>Mi chiamo <strong>Piana Gaia</strong>. Questa è una pagina di presentazione iniziale: puoi personalizzarla con la tua biografia, i tuoi studi, le tue passioni e il tuo lavoro.</p>
+        <br />
+        <p>Esempio: studentessa / professionista / creativa con sede in Italia, appassionata di...</p>
+      </div>
+    </section>
+
+    <section id="progetti">
+      <h2>Progetti</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Progetto 1</h3>
+          <p>Descrizione breve del tuo primo progetto. Sostituisci questo testo con i tuoi contenuti.</p>
+        </div>
+        <div class="card">
+          <h3>Progetto 2</h3>
+          <p>Descrizione breve del tuo secondo progetto. Sostituisci questo testo con i tuoi contenuti.</p>
+        </div>
+        <div class="card">
+          <h3>Progetto 3</h3>
+          <p>Descrizione breve del tuo terzo progetto. Sostituisci questo testo con i tuoi contenuti.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <h2>Contatti</h2>
+      <div class="card">
+        <p>Vuoi metterti in contatto con me? Compila il modulo o scrivimi a <a href="mailto:info@pianagaia.it">info@pianagaia.it</a>.</p>
+        <form onsubmit="alert('Grazie per il messaggio, Piana ti risponderà presto!'); return false;">
+          <input type="text" name="nome" placeholder="Il tuo nome" required />
+          <input type="email" name="email" placeholder="La tua email" required />
+          <textarea name="messaggio" rows="4" placeholder="Il tuo messaggio" required></textarea>
+          <button type="submit">Invia messaggio</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Piana Gaia - Tutti i diritti riservati</p>
+  </footer>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? '✕' : '☰';
+    });
+    menu.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.textContent = '☰';
+        }
+      })
+    );
+  </script>
+</body>
+</html>
